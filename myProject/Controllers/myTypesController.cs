@@ -47,7 +47,7 @@ namespace myProject.Controllers
         // Aby uzyskać więcej szczegółów, zobacz https://go.microsoft.com/fwlink/?LinkId=317598.
         [HttpPost]
         [ValidateAntiForgeryToken]
-        public ActionResult Create([Bind(Include = "myTypeId,Name")] myType myType)
+        public ActionResult Create([Bind(Include = "myTypeId,TypeName")] myType myType)
         {
             if (ModelState.IsValid)
             {
@@ -79,7 +79,7 @@ namespace myProject.Controllers
         // Aby uzyskać więcej szczegółów, zobacz https://go.microsoft.com/fwlink/?LinkId=317598.
         [HttpPost]
         [ValidateAntiForgeryToken]
-        public ActionResult Edit([Bind(Include = "myTypeId,Name")] myType myType)
+        public ActionResult Edit([Bind(Include = "myTypeId,TypeName")] myType myType)
         {
             if (ModelState.IsValid)
             {

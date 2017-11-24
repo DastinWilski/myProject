@@ -13,7 +13,7 @@ namespace myProject.Models
         [Key]
         public int AlbumId { get; set; }
 
-        public string Name { get; set; }
+        public string AlbumName { get; set; }
 
         public string Author { get; set; }
         

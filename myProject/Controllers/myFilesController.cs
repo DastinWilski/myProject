@@ -40,9 +40,9 @@ namespace myProject.Controllers
         // GET: myFiles/Create
         public ActionResult Create()
         {
-            ViewBag.AlbumID = new SelectList(db.Albums, "AlbumId", "Name");
-            ViewBag.GenreID = new SelectList(db.Genres, "GenreId", "Name");
-            ViewBag.myTypeID = new SelectList(db.myTypes, "myTypeId", "Name");
+            ViewBag.AlbumID = new SelectList(db.Albums, "AlbumId", "AlbumName");
+            ViewBag.GenreID = new SelectList(db.Genres, "GenreId", "GenreName");
+            ViewBag.myTypeID = new SelectList(db.myTypes, "myTypeId", "TypeName");
             return View();
         }
 
@@ -51,7 +51,7 @@ namespace myProject.Controllers
         // Aby uzyskać więcej szczegółów, zobacz https://go.microsoft.com/fwlink/?LinkId=317598.
         [HttpPost]
         [ValidateAntiForgeryToken]
-        public ActionResult Create([Bind(Include = "FileId,Name,Path,Created,AlbumID,GenreID,myTypeID")] myFile myFile)
+        public ActionResult Create([Bind(Include = "FileId,FileName,Path,Created,AlbumID,GenreID,myTypeID")] myFile myFile)
         {
             if (ModelState.IsValid)
             {
@@ -60,9 +60,9 @@ namespace myProject.Controllers
                 return RedirectToAction("Index");
             }
 
-            ViewBag.AlbumID = new SelectList(db.Albums, "AlbumId", "Name", myFile.AlbumID);
-            ViewBag.GenreID = new SelectList(db.Genres, "GenreId", "Name", myFile.GenreID);
-            ViewBag.myTypeID = new SelectList(db.myTypes, "myTypeId", "Name", myFile.myTypeID);
+            ViewBag.AlbumID = new SelectList(db.Albums, "AlbumId", "AlbumName", myFile.AlbumID);
+            ViewBag.GenreID = new SelectList(db.Genres, "GenreId", "GenreName", myFile.GenreID);
+            ViewBag.myTypeID = new SelectList(db.myTypes, "myTypeId", "TypeName", myFile.myTypeID);
             return View(myFile);
         }
 
@@ -78,9 +78,9 @@ namespace myProject.Controllers
             {
                 return HttpNotFound();
             }
-            ViewBag.AlbumID = new SelectList(db.Albums, "AlbumId", "Name", myFile.AlbumID);
-            ViewBag.GenreID = new SelectList(db.Genres, "GenreId", "Name", myFile.GenreID);
-            ViewBag.myTypeID = new SelectList(db.myTypes, "myTypeId", "Name", myFile.myTypeID);
+            ViewBag.AlbumID = new SelectList(db.Albums, "AlbumId", "AlbumName", myFile.AlbumID);
+            ViewBag.GenreID = new SelectList(db.Genres, "GenreId", "GenreName", myFile.GenreID);
+            ViewBag.myTypeID = new SelectList(db.myTypes, "myTypeId", "TypeName", myFile.myTypeID);
             return View(myFile);
         }
 
@@ -89,7 +89,7 @@ namespace myProject.Controllers
         // Aby uzyskać więcej szczegółów, zobacz https://go.microsoft.com/fwlink/?LinkId=317598.
         [HttpPost]
         [ValidateAntiForgeryToken]
-        public ActionResult Edit([Bind(Include = "FileId,Name,Path,Created,AlbumID,GenreID,myTypeID")] myFile myFile)
+        public ActionResult Edit([Bind(Include = "FileId,FileName,Path,Created,AlbumID,GenreID,myTypeID")] myFile myFile)
         {
             if (ModelState.IsValid)
             {
@@ -97,9 +97,9 @@ namespace myProject.Controllers
                 db.SaveChanges();
                 return RedirectToAction("Index");
             }
-            ViewBag.AlbumID = new SelectList(db.Albums, "AlbumId", "Name", myFile.AlbumID);
-            ViewBag.GenreID = new SelectList(db.Genres, "GenreId", "Name", myFile.GenreID);
-            ViewBag.myTypeID = new SelectList(db.myTypes, "myTypeId", "Name", myFile.myTypeID);
+            ViewBag.AlbumID = new SelectList(db.Albums, "AlbumId", "AlbumName", myFile.AlbumID);
+            ViewBag.GenreID = new SelectList(db.Genres, "GenreId", "GenreName", myFile.GenreID);
+            ViewBag.myTypeID = new SelectList(db.myTypes, "myTypeId", "TypeName", myFile.myTypeID);
             return View(myFile);
         }
 

@@ -47,7 +47,7 @@ namespace myProject.Controllers
         // Aby uzyskać więcej szczegółów, zobacz https://go.microsoft.com/fwlink/?LinkId=317598.
         [HttpPost]
         [ValidateAntiForgeryToken]
-        public ActionResult Create([Bind(Include = "GenreId,Name")] Genre genre)
+        public ActionResult Create([Bind(Include = "GenreId,GenreName")] Genre genre)
         {
             if (ModelState.IsValid)
             {
@@ -79,7 +79,7 @@ namespace myProject.Controllers
         // Aby uzyskać więcej szczegółów, zobacz https://go.microsoft.com/fwlink/?LinkId=317598.
         [HttpPost]
         [ValidateAntiForgeryToken]
-        public ActionResult Edit([Bind(Include = "GenreId,Name")] Genre genre)
+        public ActionResult Edit([Bind(Include = "GenreId,GenreName")] Genre genre)
         {
             if (ModelState.IsValid)
             {

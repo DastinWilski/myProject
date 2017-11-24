@@ -47,7 +47,7 @@ namespace myProject.Controllers
         // Aby uzyskać więcej szczegółów, zobacz https://go.microsoft.com/fwlink/?LinkId=317598.
         [HttpPost]
         [ValidateAntiForgeryToken]
-        public ActionResult Create([Bind(Include = "PlaylistId,Name")] Playlist playlist)
+        public ActionResult Create([Bind(Include = "PlaylistId,PlaylistName")] Playlist playlist)
         {
             if (ModelState.IsValid)
             {
@@ -79,7 +79,7 @@ namespace myProject.Controllers
         // Aby uzyskać więcej szczegółów, zobacz https://go.microsoft.com/fwlink/?LinkId=317598.
         [HttpPost]
         [ValidateAntiForgeryToken]
-        public ActionResult Edit([Bind(Include = "PlaylistId,Name")] Playlist playlist)
+        public ActionResult Edit([Bind(Include = "PlaylistId,PlaylistName")] Playlist playlist)
         {
             if (ModelState.IsValid)
             {

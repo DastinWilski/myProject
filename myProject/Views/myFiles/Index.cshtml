@@ -12,16 +12,16 @@
 <table class="table">
     <tr>
         <th>
-            @Html.DisplayNameFor(model => model.Album.Name)
+            @Html.DisplayNameFor(model => model.Album.AlbumName)
         </th>
         <th>
-            @Html.DisplayNameFor(model => model.Genre.Name)
+            @Html.DisplayNameFor(model => model.Genre.GenreName)
         </th>
         <th>
-            @Html.DisplayNameFor(model => model.myType.Name)
+            @Html.DisplayNameFor(model => model.myType.TypeName)
         </th>
         <th>
-            @Html.DisplayNameFor(model => model.Name)
+            @Html.DisplayNameFor(model => model.FileName)
         </th>
         <th>
             @Html.DisplayNameFor(model => model.Path)
@@ -35,16 +35,16 @@
 @foreach (var item in Model) {
     <tr>
         <td>
-            @Html.DisplayFor(modelItem => item.Album.Name)
+            @Html.DisplayFor(modelItem => item.Album.AlbumName)
         </td>
         <td>
-            @Html.DisplayFor(modelItem => item.Genre.Name)
+            @Html.DisplayFor(modelItem => item.Genre.GenreName)
         </td>
         <td>
-            @Html.DisplayFor(modelItem => item.myType.Name)
+            @Html.DisplayFor(modelItem => item.myType.TypeName)
         </td>
         <td>
-            @Html.DisplayFor(modelItem => item.Name)
+            @Html.DisplayFor(modelItem => item.FileName)
         </td>
         <td>
             @Html.DisplayFor(modelItem => item.Path)

@@ -13,7 +13,7 @@ namespace myProject.Models
         [Key]
         public int myTypeId { get; set; }
 
-        public string Name { get; set; }
+        public string TypeName { get; set; }
 
 
 
