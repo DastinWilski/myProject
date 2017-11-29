@@ -8,6 +8,7 @@ using System.Web;
 using System.Web.Mvc;
 using myProject.DAL;
 using myProject.Models;
+using myProject.ViewModels;
 
 namespace myProject.Controllers
 {
@@ -33,7 +34,24 @@ namespace myProject.Controllers
             {
                 return HttpNotFound();
             }
-            return View(playlist);
+            var Results = from b in db.myFiles
+                          select new
+                          {
+                              b.FileId,
+                              b.FileName,
+                              Checked = ((from ab in db.FilesToPlaylists where (ab.PlaylistID == id) & (ab.FileID == b.FileId) select ab).Count() > 0)
+
+                          };
+            var MyViewModel = new PlaylistViewModel();
+            MyViewModel.PlaylistId = id.Value;
+            MyViewModel.PlaylistName = playlist.PlaylistName;
+            var MyCheckBoxList = new List<CheckBoxViewModel>();
+            foreach (var item in Results)
+            {
+                MyCheckBoxList.Add(new CheckBoxViewModel { Id = item.FileId, Name = item.FileName, Checked = item.Checked });
+            }
+            MyViewModel.myFiles = MyCheckBoxList;
+            return View(MyViewModel);
         }
 
         // GET: Playlists/Create
@@ -71,7 +89,24 @@ namespace myProject.Controllers
             {
                 return HttpNotFound();
             }
-            return View(playlist);
+            var Results = from b in db.myFiles
+                          select new
+                          {
+                              b.FileId,
+                              b.FileName,
+                              Checked = ((from ab in db.FilesToPlaylists where (ab.PlaylistID == id) & (ab.FileID == b.FileId)select ab).Count() > 0)
+                              
+                          };
+            var MyViewModel = new PlaylistViewModel();
+            MyViewModel.PlaylistId = id.Value;
+            MyViewModel.PlaylistName = playlist.PlaylistName;
+            var MyCheckBoxList = new List<CheckBoxViewModel>();
+            foreach (var item in Results)
+            {
+                MyCheckBoxList.Add(new CheckBoxViewModel { Id = item.FileId, Name = item.FileName, Checked = item.Checked });
+            }
+            MyViewModel.myFiles = MyCheckBoxList;
+            return View(MyViewModel);
         }
 
         // POST: Playlists/Edit/5
@@ -79,11 +114,29 @@ namespace myProject.Controllers
         // Aby uzyskać więcej szczegółów, zobacz https://go.microsoft.com/fwlink/?LinkId=317598.
         [HttpPost]
         [ValidateAntiForgeryToken]
-        public ActionResult Edit([Bind(Include = "PlaylistId,PlaylistName")] Playlist playlist)
+        public ActionResult Edit(PlaylistViewModel playlist)
         {
             if (ModelState.IsValid)
             {
-                db.Entry(playlist).State = EntityState.Modified;
+                var MyPlaylist = db.Playlists.Find(playlist.PlaylistId);
+                MyPlaylist.PlaylistName = playlist.PlaylistName;
+
+                foreach(var item in db.FilesToPlaylists)
+                {
+                    if(item.FileID == playlist.PlaylistId)
+                    {
+                        db.Entry(item).State = System.Data.Entity.EntityState.Deleted;
+                    }
+                }
+                foreach (var item in playlist.myFiles)
+                {
+                    if (item.Checked)
+                    {
+                        db.FilesToPlaylists.Add(new FilesToPlaylist() {PlaylistID = playlist.PlaylistId, FileID = item.Id});
+                    }
+                }
+
+                
                 db.SaveChanges();
                 return RedirectToAction("Index");
             }

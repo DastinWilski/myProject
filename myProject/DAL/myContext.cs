@@ -16,5 +16,6 @@ namespace myProject.DAL
         public DbSet<Genre> Genres { get; set; }
         public DbSet<myType> myTypes { get; set; }
         public DbSet<Playlist> Playlists { get; set; }
+        public DbSet<FilesToPlaylist> FilesToPlaylists { get; set; }
     }
 }

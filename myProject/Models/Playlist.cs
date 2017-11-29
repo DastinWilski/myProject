@@ -15,9 +15,9 @@ namespace myProject.Models
 
         public string PlaylistName { get; set; }
 
-        
 
 
-        public virtual ICollection<myFile> myFiles { get; set; }
+
+        public virtual ICollection<FilesToPlaylist> FilesToPlaylists { get; set; }
     }
 }

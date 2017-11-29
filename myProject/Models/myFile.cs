@@ -29,6 +29,6 @@ namespace myProject.Models
         public virtual Genre Genre { get; set; }
         public virtual myType myType { get; set; }
 
-        public virtual ICollection<Playlist> Playlists { get; set; }
+        public virtual ICollection<FilesToPlaylist> FilesToPlaylists { get; set; }
     }
 }
