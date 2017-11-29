@@ -123,7 +123,7 @@ namespace myProject.Controllers
 
                 foreach(var item in db.FilesToPlaylists)
                 {
-                    if(item.FileID == playlist.PlaylistId)
+                    if(item.PlaylistID == playlist.PlaylistId)
                     {
                         db.Entry(item).State = System.Data.Entity.EntityState.Deleted;
                     }
@@ -132,8 +132,9 @@ namespace myProject.Controllers
                 {
                     if (item.Checked)
                     {
-                        db.FilesToPlaylists.Add(new FilesToPlaylist() {PlaylistID = playlist.PlaylistId, FileID = item.Id});
+                        db.FilesToPlaylists.Add(new FilesToPlaylist() { PlaylistID = playlist.PlaylistId, FileID = item.Id });
                     }
+                    
                 }
 
                 
