@@ -25,7 +25,19 @@
         <dd>
             @Html.DisplayFor(model => model.Author)
         </dd>
-
+        <dt>
+          
+           <b>Files:</b> 
+          
+        </dt>
+        <dd>
+            @foreach (var item in Model.myFiles)
+            {
+               
+                    <div>@item.FileName</div>
+                
+            }
+        </dd>
     </dl>
 </div>
 <p>
